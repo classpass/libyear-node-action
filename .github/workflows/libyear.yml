@@ -1,18 +1,17 @@
 name: Libyear
 on: push
-
 jobs:
   libyear:
     name: Libyear
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 10.x
-    - name: 'Install NPM Packages'
-      run: |
-        npm install
-    - name: Run libyear action
-      uses: ./
+      - uses: actions/checkout@61b9e3751b92087fd0b06925ba6dd6314e06f089 # master
+      - name: Use Node.js
+        uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
+        with:
+          node-version: 10.x
+      - name: 'Install NPM Packages'
+        run: |
+          npm install
+      - name: Run libyear action
+        uses: ./

@@ -1,42 +1,41 @@
 name: Test branch
 on: push
-
 jobs:
   ci:
     name: Run Build and check output is checked-in
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 10.x
-    - name: 'Build'
-      run: |
-        npm install
-        npm run build
-    - name: Check no files have changes
-      run: git diff --exit-code
+      - uses: actions/checkout@61b9e3751b92087fd0b06925ba6dd6314e06f089 # master
+      - name: Use Node.js
+        uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
+        with:
+          node-version: 10.x
+      - name: 'Build'
+        run: |
+          npm install
+          npm run build
+      - name: Check no files have changes
+        run: git diff --exit-code
   unit-tests:
     name: Run Unit Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 10.x
-    - name: Install NPM Packages
-      run: |
-        npm install
-    - name: Run Unit Tests
-      run: |
-        npm run test -- --coverage
-    - name: Check Linting
-      run: |
-        npm run lint
-    - name: Submit to CodeCov
-      uses: codecov/codecov-action@v1
-      with:
-        file: ./coverage/lcov.info
-        fail_ci_if_error: true
+      - uses: actions/checkout@61b9e3751b92087fd0b06925ba6dd6314e06f089 # master
+      - name: Use Node.js
+        uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
+        with:
+          node-version: 10.x
+      - name: Install NPM Packages
+        run: |
+          npm install
+      - name: Run Unit Tests
+        run: |
+          npm run test -- --coverage
+      - name: Check Linting
+        run: |
+          npm run lint
+      - name: Submit to CodeCov
+        uses: codecov/codecov-action@29386c70ef20e286228c72b668a06fd0e8399192 # v1
+        with:
+          file: ./coverage/lcov.info
+          fail_ci_if_error: true
